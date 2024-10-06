@@ -132,24 +132,24 @@
 
             <div class="form-section">
                 <div class="form-section-title">Dias disponíveis:</div>
-                <input type="checkbox" id="segunda" name="day" value="segunda-feira"> Segunda-feira
-                <input type="checkbox" id="terca" name="day" value="terca-feira"> Terça-feira
-                <input type="checkbox" id="quarta" name="day" value="quarta-feira"> Quarta-feira
-                <input type="checkbox" id="quinta" name="day" value="quinta-feira"> Quinta-feira
-                <input type="checkbox" id="sexta" name="day" value="sexta-feira"> Sexta-feira
+                <input type="checkbox" id="segunda" name="day[]" value="segunda-feira"> Segunda-feira
+                <input type="checkbox" id="terca" name="day[]" value="terca-feira"> Terça-feira
+                <input type="checkbox" id="quarta" name="day[]" value="quarta-feira"> Quarta-feira
+                <input type="checkbox" id="quinta" name="day[]" value="quinta-feira"> Quinta-feira
+                <input type="checkbox" id="sexta" name="day[]" value="sexta-feira"> Sexta-feira
             </div>
 
             <div class="form-section">
                 <div class="form-section-title">Horários preferidos:</div>
-                <input type="checkbox" id="manha" name="time" value="manha"> Manhã (8h-12h)
-                <input type="checkbox" id="tarde" name="time" value="tarde"> Tarde (12h-17h)
-                <input type="checkbox" id="noite" name="time" value="noite"> Noite (17h-21h)
+                <input type="checkbox" id="manha" name="time[]" value="manha"> Manhã (8h-12h)
+                <input type="checkbox" id="tarde" name="time[]" value="tarde"> Tarde (12h-17h)
+                <input type="checkbox" id="noite" name="time[]" value="noite"> Noite (17h-21h)
             </div>
 
             <div class="form-section">
                 <div class="form-section-title">Como prefere que a aula aconteça?</div>
-                <input type="radio" id="presencial" name="lesson-type" value="presencial" required> Presencial
-                <input type="radio" id="online" name="lesson-type" value="online"> Online (via Zoom, Google Meet, etc.)
+                <input type="radio" id="presencial" name="lesson_type" value="presencial" required> Presencial
+                <input type="radio" id="online" name="lesson_type" value="online"> Online (via Zoom, Google Meet, etc.)
             </div>
 
             <div class="form-section">
@@ -169,3 +169,33 @@
 
 </body>
 </html>
+
+
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $phone = htmlspecialchars($_POST['phone']);
+    $language = htmlspecialchars($_POST['language']);
+    $level = htmlspecialchars($_POST['level']);
+    $days = isset($_POST['day']) ? implode(", ", $_POST['day']) : '';
+    $time = isset($_POST['time']) ? implode(", ", $_POST['time']) : '';
+    $lesson_type = htmlspecialchars($_POST['lesson_type']);
+    $message = htmlspecialchars($_POST['message']);
+
+    // Crear el contenido del correo
+    $to = "2gfiuza@gmail.com";
+    $subject = "Novo agendamento de aula";
+    $body = "Nome: $name\nE-mail: $email\nTelefone: $phone\nIdioma: $language\nNível: $level\nDias disponíveis: $days\nHorários preferidos: $time\nTipo de aula: $lesson_type\nMensagem: $message";
+    $headers = "From: $email";
+
+    // Enviar correo
+    if (mail($to, $subject, $body, $headers)) {
+        echo "E-mail enviado com sucesso!";
+    } else {
+        echo "Erro ao enviar e-mail.";
+    }
+} else {
+    echo "Método não suportado.";
+}
