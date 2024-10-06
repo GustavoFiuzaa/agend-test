@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agende sua Aula</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+            font-size: 24px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, select:focus, textarea:focus {
+            border-color: #2193b0;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #2193b0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #1e90ff;
+        }
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .contact-info a {
+            color: #2193b0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        .form-section {
+            margin-bottom: 15px;
+        }
+        .form-section-title {
+            font-size: 18px;
+            color: #2193b0;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Agende sua Aula</h1>
+        <form action="send_email.php" method="POST">
+
+            <div class="form-section">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-section">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-section">
+                <label for="phone">Telefone:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">Preferência de Idioma:</div>
+                <select id="language" name="language" required>
+                    <option value="ingles">Inglês</option>
+                    <option value="espanhol">Espanhol</option>
+                </select>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">Nível Atual:</div>
+                <input type="radio" id="iniciante" name="level" value="iniciante" required> Iniciante
+                <input type="radio" id="intermediario" name="level" value="intermediario"> Intermediário
+                <input type="radio" id="avancado" name="level" value="avancado"> Avançado
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">Dias disponíveis:</div>
+                <input type="checkbox" id="segunda" name="day" value="segunda-feira"> Segunda-feira
+                <input type="checkbox" id="terca" name="day" value="terca-feira"> Terça-feira
+                <input type="checkbox" id="quarta" name="day" value="quarta-feira"> Quarta-feira
+                <input type="checkbox" id="quinta" name="day" value="quinta-feira"> Quinta-feira
+                <input type="checkbox" id="sexta" name="day" value="sexta-feira"> Sexta-feira
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">Horários preferidos:</div>
+                <input type="checkbox" id="manha" name="time" value="manha"> Manhã (8h-12h)
+                <input type="checkbox" id="tarde" name="time" value="tarde"> Tarde (12h-17h)
+                <input type="checkbox" id="noite" name="time" value="noite"> Noite (17h-21h)
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">Como prefere que a aula aconteça?</div>
+                <input type="radio" id="presencial" name="lesson-type" value="presencial" required> Presencial
+                <input type="radio" id="online" name="lesson-type" value="online"> Online (via Zoom, Google Meet, etc.)
+            </div>
+
+            <div class="form-section">
+                <label for="message">Mensagem adicional (opcional):</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <div class="contact-info">
+            <p>Contato rápido:</p>
+            <p>Telefone: <a href="tel:+551111111111">11 11111-1111</a></p>
+            <p>E-mail: <a href="mailto:2gfiuza@gmail.com">2gfiuza@gmail.com</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
